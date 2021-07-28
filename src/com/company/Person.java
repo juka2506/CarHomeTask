@@ -10,12 +10,11 @@ public class Person {
     private boolean hasBardy;
     private List<Bardy> bardiesOwned;
 
-    public Person(String name, int age, boolean likeBardy, boolean hasBardy, List<Bardy> bardiesOwned) {
+    public Person(String name, int age, boolean likeBardy, boolean hasBardy) {
         this.name = name;
         this.age = age;
         this.likeBardy = likeBardy;
         this.hasBardy = hasBardy;
-        this.bardiesOwned = bardiesOwned;
     }
 
     public String getName() {

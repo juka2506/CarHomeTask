@@ -6,29 +6,41 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Bardy car1 = new Bardy(4, "black");
-        Bardy car2 = new Bardy(4, "white");
-        Bardy car3 = new Bardy(8, "pink");
+        List<Bardy> lotteryBardies = new ArrayList<>();
+        lotteryBardies.add(new Bardy(4, "black", 4));
+        lotteryBardies.add(new Bardy(4, "red", 4));
+        lotteryBardies.add(new Bardy(4, "orange", 2));
+        lotteryBardies.add(new Bardy(4, "yellow", 4));
+        lotteryBardies.add(new Bardy(4, "blue", 2));
 
-        List<Person> people = new ArrayList<>();
-        people.add(new Person("John", 22, true, false, new ArrayList<>()));
-        people.add(new Person("Max", 35, false, false, new ArrayList<>()));
-        people.add(new Person("Andre", 37, true, false, new ArrayList<>()));
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person("Fred", 34, true, true));
+        personList.add(new Person("Wilma", 20, true, false));
+        personList.add(new Person("Shaggy", 28, false, false));
+        personList.add(new Person("Carly", 29, false, false));
+        personList.add(new Person("Dan", 30, true, false));
 
-        System.out.println(people);
+        for (Person person :personList) {
+            List<Bardy> bardiesOwned = new ArrayList<>();
+            if(person.isLikeBardy() && person.isHasBardy()) {
+                bardiesOwned.add(lotteryBardies.get(getRandomIndex(lotteryBardies)));
+                person.setBardiesOwned(bardiesOwned);
+            } else if (person.isLikeBardy() && !person.isHasBardy()) {
+                bardiesOwned.add(lotteryBardies.get(getRandomIndex(lotteryBardies)));
+                person.setHasBardy(true);
+                person.setBardiesOwned(bardiesOwned);
+            }
+        }
 
-        List<Bardy> johnCars = new ArrayList<>();
-        johnCars.add(car1);
-        people.get(0).setHasBardy(true);
-        people.get(0).setBardiesOwned(johnCars);
+        for (Person person : personList) {
+            if(person.isLikeBardy() && person.isHasBardy()) {
+                System.out.println(person.getName() + " has this " + person.getBardiesOwned().get(0).getColor() + " bardy");
+            }
+        }
+    }
 
-        List<Bardy> andreCars = new ArrayList<>();
-        andreCars.add(car2);
-        andreCars.add(car3);
-        people.get(2).setHasBardy(true);
-        people.get(2).setBardiesOwned(andreCars);
-
-        System.out.println(people);
+    public static int getRandomIndex(List<Bardy> objectList) {
+        return (int)(Math.random() * objectList.size());
 
     }
 }

@@ -2,8 +2,11 @@ package com.company;
 
 public class Bardy extends Car{
 
-    public Bardy(int noOfTires, String color) {
+    private int noOfSeats;
+
+    public Bardy(int noOfTires, String color, int noOfSeats) {
         super(noOfTires, color);
+        this.noOfSeats = noOfSeats;
     }
 
     @Override
